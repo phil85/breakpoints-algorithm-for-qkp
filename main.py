@@ -10,16 +10,14 @@ items = [0, 1, 2, 3]
 weights = [2, 3, 4, 5]
 
 # Define profits for including items i and j in the knapsack
-profits = {(0, 0): 5,
-           (0, 1): 1,
-           (0, 2): 2,
-           (0, 3): 3,
-           (1, 1): 7,
-           (1, 2): 1,
+profits = {(0, 0): 1,
+           (0, 1): 2,
+           (0, 2): 11,
+           (1, 1): 1,
+           (1, 2): 3,
            (1, 3): 2,
-           (2, 2): 8,
-           (2, 3): 1,
-           (3, 3): 10}
+           (2, 2): 1,
+           (3, 3): 1}
 
 # Define parameters
 params = {'n_lambda_values': 1600}
