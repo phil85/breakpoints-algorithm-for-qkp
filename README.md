@@ -19,7 +19,7 @@ A scalable algorithm for quadratic knapsack problems
     2. Open the Cygwin shell and navigate to the folder that contains the file `pseudopar.c`.
     3. Compile the C code with the command:
        ```bash
-       gcc pseudopar.c pseudo_par.exe
+       gcc pseudopar.c -o pseudo_par.exe
        ```
 
 3. All set, you can now run the algorithm in the `main.py` file.
