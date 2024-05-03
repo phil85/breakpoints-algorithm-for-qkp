@@ -1,7 +1,9 @@
+import re
 import time
+import subprocess
 import numpy as np
 import pandas as pd
-import subprocess
+from subprocess import PIPE
 
 
 def compute_ofv_from_utility_matrix(nodes, utility_matrix, linear_utilities, left_nodes, beta):
@@ -324,59 +326,25 @@ def compute_ofv_from_nodes_and_edges(items, nodes, edges):
     return ofv
 
 
-def write_input_file_for_parametric_flow_algorithm(nodes, edges, weights, params):
-    node_offset = 3
+def write_input_file_for_QKPsimparamHPF(nodes, edges, weights, params):
+
+    # Get number of lambda values
     if 'n_lambda_values' in params:
         number_of_lambda_values = params['n_lambda_values']
     else:
         number_of_lambda_values = 1600
-    lower_bound_for_lambda = 0
-    precision = 5  # number of decimals to round to
 
-    # Compute weighted node degrees
-    node_degrees = {i: 0 for i in nodes}
-    for (i, j) in edges:
-        weight = edges[(i, j)]
-        node_degrees[i] += weight
-        node_degrees[j] += weight
-
-    # Compute upper bound for lambda
-    degree_weight_ratios = {i: node_degrees[i] / weights[i] for i in nodes}
-    max_degree_weight_ratio = max(degree_weight_ratios.values())
-    upper_bound_for_lambda = max_degree_weight_ratio
-
-    # Determine lambda values
-    lambda_values = np.linspace(upper_bound_for_lambda, lower_bound_for_lambda, number_of_lambda_values)
-    lambda_values_matrix = np.outer(weights, lambda_values)
-
-    # Write input file using list comprehensions
+    # Write input file
     with open('input.txt', 'w') as f:
-        n_nodes = len(nodes) + 2
-        n_edges = 2 * len(edges) + 2 * len(nodes)
-        f.write(f'p par-max {n_nodes} {n_edges} {number_of_lambda_values}\n')
-        f.write('n 1 s\n')
-        f.write('n 2 t\n')
-
-        edge_lines = ['a {:d} {:d} {:.5f}\n'.format(i + node_offset, j + node_offset, edges[(i, j)]) +
-                      'a {:d} {:d} {:.5f}\n'.format(j + node_offset, i + node_offset, edges[(i, j)])
-                      for (i, j) in edges]
-
-        f.writelines(edge_lines)
-
-        for i in nodes:
-            lambda_line = 'a 1 {:d} '.format(i + node_offset) + \
-                          ' '.join(np.round(np.maximum(0, (node_degrees[i] - lambda_values_matrix[i])),
-                                            precision).astype(str))
-            f.write(lambda_line + '\n')
-
-        for i in nodes:
-            lambda_line = 'a {:d} 2 '.format(i + node_offset) + \
-                          ' '.join(np.round(np.maximum(0, (lambda_values_matrix[i] - node_degrees[i])),
-                                            precision).astype(str))
-            f.write(lambda_line + '\n')
+        n_nodes = len(nodes)
+        n_edges = len(edges)
+        edge_lines = ['e {} {} {:.5f}\n'.format(i, j, edges[(i, j)]) for (i, j) in edges]
+        node_lines = ['n {} {:.5f} N/A\n'.format(i, weights[i]) for i in nodes]
+        content = f'q {n_nodes} {n_edges} {number_of_lambda_values}\n' + ''.join(edge_lines) + ''.join(node_lines)
+        f.write(content)
 
 
-def read_output_file_of_parametric_flow_algorithm():
+def read_output_file_of_QKPsimparamHPF():
     # Open file and read lines
     f = open('output.txt', 'r')
     lines = f.readlines()
@@ -406,13 +374,30 @@ def read_output_file_of_parametric_flow_algorithm():
     return breakpoint_sets
 
 
+def extract_time_for_parametric_cut(text):
+
+    # Define a regular expression pattern to match the time format
+    pattern = r'Time for performing parametric cut: (\d+\.\d+) seconds'
+
+    # Search for the pattern in the input text
+    match = re.search(pattern, text)
+
+    # If a match is found, extract the time as a float
+    if match:
+        time_str = match.group(1)
+        time_float = float(time_str)
+        return time_float
+    else:
+        return None
+
+
 def get_breakpoints(nodes, edges, weights, params):
 
     # Start stopwatch
     tic = time.perf_counter()
 
-    # Write input file for parametric flow algorithm
-    write_input_file_for_parametric_flow_algorithm(nodes, edges, weights, params)
+    # Write input file for simple parametric flow algorithm
+    write_input_file_for_QKPsimparamHPF(nodes, edges, weights, params)
 
     # Stop stopwatch
     cpu_write = time.perf_counter() - tic
@@ -420,29 +405,31 @@ def get_breakpoints(nodes, edges, weights, params):
     # Start stopwatch
     tic = time.perf_counter()
 
-    # Apply parametric pseudoflow algorithm
-    subprocess.call(['pseudo_par.exe', 'input.txt', 'output.txt'],
-                    stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+    # Run simple parametric cut algorithm
+    result = subprocess.run(['QKPsimparamHPF.exe', 'input.txt', 'output.txt'],stdout=PIPE)
 
     # Record running time
-    cpu_cut = time.perf_counter() - tic
+    cpu_exe = time.perf_counter() - tic
+
+    # Record cut time
+    cpu_cut = extract_time_for_parametric_cut(result.stdout.decode('utf-8'))
 
     # Start stopwatch
     tic = time.perf_counter()
 
     # Read output file
-    breakpoint_sets = read_output_file_of_parametric_flow_algorithm()
+    breakpoint_sets = read_output_file_of_QKPsimparamHPF()
 
     # Stop stopwatch
     cpu_read = time.perf_counter() - tic
 
-    return breakpoint_sets, cpu_write, cpu_cut, cpu_read
+    return breakpoint_sets, cpu_write, cpu_cut, cpu_exe, cpu_read
 
 
 def run_bp_algorithm(nodes, edges, weights, budgets, params):
 
     # Compute breakpoints
-    breakpoint_sets_dict, cpu_write, cpu_cut, cpu_read = get_breakpoints(nodes, edges, weights, params)
+    breakpoint_sets_dict, cpu_write, cpu_cut, cpu_exe, cpu_read = get_breakpoints(nodes, edges, weights, params)
 
     # Extract information from breakpoint sets
     n_breakpoints = len(breakpoint_sets_dict)
@@ -467,26 +454,21 @@ def run_bp_algorithm(nodes, edges, weights, budgets, params):
     # Initialize results
     results = pd.DataFrame()
 
-    # Compute utilities at breakpoints
-    utilities_at_breakpoints = np.array([compute_ofv_from_nodes_and_edges(breakpoints[i], nodes, edges)
-                                         for i in range(n_breakpoints + 1)])
-
-    # Run local search
+    # Save results for each budget
     for i, budget in enumerate(budgets):
 
         result = pd.Series(dtype=object)
         result['budget'] = budget
         result['budget_fraction'] = '{:.4f}'.format(budget / sum(weights))
-        result['approach'] = 'bp_method'
         result['n_breakpoints'] = n_breakpoints
         result['total_weights_at_breakpoints'] = ([0] + list(total_weights_at_breakpoints))
-        result['utilities_at_breakpoints'] = list(utilities_at_breakpoints)
         result['items_left'] = list(greedy_left_nodes[i])
         result['items_right'] = list(greedy_right_nodes[i])
         result['cpu_left'] = greedy_left_running_times[i]
         result['cpu_right'] = greedy_right_running_times[i]
         result['cpu_write'] = cpu_write
         result['cpu_cut'] = cpu_cut
+        result['cpu_exe'] = cpu_exe
         result['cpu_read'] = cpu_read
 
         # Compute objective function values
@@ -504,7 +486,7 @@ def run_bp_algorithm(nodes, edges, weights, budgets, params):
             result['total_weight'] = result['total_weight_right']
 
         # Get total running time
-        result['cpu'] = (cpu_write + cpu_cut + cpu_read + greedy_left_running_times[i] + greedy_right_running_times[i])
+        result['cpu'] = (cpu_write + cpu_exe + cpu_read + greedy_left_running_times[i] + greedy_right_running_times[i])
 
         # Convert to dataframe
         result = result.to_frame().transpose()

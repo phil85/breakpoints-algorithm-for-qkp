@@ -1,15 +1,15 @@
 from breakpoints_algorithm import run_bp_algorithm
 
-# Define knapsack capacity (or budget)
+# Define the budget/capacity (you can specify multiple budgets)
 budgets = [8]
 
-# Define items (or nodes) with ids 0, 1, ..., n
+# Define nodes (or items) with ids 0, 1, ..., n - 1
 items = [0, 1, 2, 3]
 
-# Define weights for items
+# Define the node weights
 weights = [2, 3, 4, 5]
 
-# Define profits for including items i and j in the knapsack
+# Define the utilities for selecting nodes i and j
 profits = {(0, 0): 1,
            (0, 1): 2,
            (0, 2): 11,
@@ -19,7 +19,7 @@ profits = {(0, 0): 1,
            (2, 2): 1,
            (3, 3): 1}
 
-# Define parameters
+# Define parameters for the breakpoints algorithm
 params = {'n_lambda_values': 1600}
 
 # Run the breakpoints algorithm
@@ -28,3 +28,5 @@ results = run_bp_algorithm(items, profits, weights, budgets, params)
 # Print results
 print('Objective function value: {:.1f}'.format(results.loc[0, 'ofv']))
 print('Selected items: {:}'.format(results.loc[0, 'items']))
+print('Total running time: {:.4f} seconds'.format(results.loc[0, 'cpu']))
+print('Running time for simple parametric cut: {:.4f} seconds'.format(results.loc[0, 'cpu_cut']))
