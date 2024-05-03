@@ -7,7 +7,7 @@ A scalable algorithm for quadratic knapsack problems
 
 2. Compile the C code of the simple parametric cut procedure `QKPsimparamHPF.c` with a GNU C compiler.
 
-    For Linux users:
+    For Linux/Mac users:
     1. Open a terminal and navigate to the folder that contains the file `QKPsimparamHPF.c`.
     2. Compile the C code with the command:
        ```bash
