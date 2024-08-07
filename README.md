@@ -27,7 +27,7 @@
 
 Please cite the following paper if you use this code.
 
-**Baumann, P. and Hochbaum D. S.** (2023): PCCC: The Pairwise-Confidence-Constraints-Clustering Algorithm. https://arxiv.org/abs/2212.14437
+**Hochbaum, D. S., Baumann, P., Goldschmidt O., Zhang Y.** (2024): A Fast and Effective  Breakpoints Algorithm for the Quadratic Knapsack Problem. under review.
 
 Bibtex:
 ```
