@@ -406,7 +406,7 @@ def get_breakpoints(nodes, edges, weights, params):
     tic = time.perf_counter()
 
     # Run simple parametric cut algorithm
-    result = subprocess.run(['QKPsimparamHPF.exe', 'input.txt', 'output.txt'],stdout=PIPE)
+    result = subprocess.run(['./QKPsimparamHPF.exe', 'input.txt', 'output.txt'],stdout=PIPE)
 
     # Record running time
     cpu_exe = time.perf_counter() - tic
