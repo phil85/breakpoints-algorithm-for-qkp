@@ -1,3 +1,5 @@
+# © 2024, University of Bern, Group of Business Analytics and Operations Research, Philipp Baumann
+
 import re
 import time
 import subprocess
