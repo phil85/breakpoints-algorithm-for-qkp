@@ -32,7 +32,7 @@ Please cite the following paper if you use this code.
 Bibtex:
 ```
 @article{hochbaum2024fast,
-	author={Hochbaum, Dorit S., Baumann, Philipp, Goldschmidt Olivier, Zhang Yiqing},
+	author={Hochbaum, Dorit S., Baumann, Philipp, Goldschmidt Olivier and Zhang Yiqing},
 	title = {A Fast and Effective  Breakpoints Algorithm for the Quadratic Knapsack Problem},
 	year={2024},
 	journal = {under review},
