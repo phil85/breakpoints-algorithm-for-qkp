@@ -1,5 +1,5 @@
-# Breakpoints Algorithm
-A scalable algorithm for quadratic knapsack problems
+![Cover Image](readme media/cover_image.png)
+## A scalable algorithm for quadratic knapsack problems
 
 # Installation
 
