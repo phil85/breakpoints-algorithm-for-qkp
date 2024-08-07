@@ -23,3 +23,7 @@
        ```
 
 3. All set, you can now run the algorithm in the `main.py` file.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
