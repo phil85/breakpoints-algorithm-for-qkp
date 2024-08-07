@@ -48,10 +48,10 @@ typedef struct arc
 {
 	struct node *from;
 	struct node *to;
-    float flow;
-    float capacity;
+  float flow;
+  float capacity;
 	int direction;
-    float *capacities;
+  float *capacities;
 } Arc;
 
 typedef struct node
@@ -231,18 +231,12 @@ static void readData(void)
 readData
 *************************************************************************/
 {
-	//int i, j, capacity, from, to, first=0, numLines = 0, lineLength=32768;
   int i, j, from, to, first=0, numLines=0, lineLength=32768;
   float capacity, cst, *params, maxDegreeRatio, step;
 	char ch, ch1;
 	char *word, *line, *tmpline, *wt;
 	Arc *ac = NULL;
-	// strcpy(instance_path,"/global/home/users/goldoliv/mdp/mydata/MDG-c/");
-	// strcat(instance_path,instance_name);
-	// printf("instance path ", instance_path);
-//	FILE* f = fopen("/home/olivier/Downloads/MOOC/MAXDIVERSITY/code/OBMA/BPTS/dblp_221202_pseudopar_input.txt", "r");
-// printf("%s\n", instance_name);
-FILE* f = fopen(instance_name, "r");
+	FILE* f = fopen(instance_name, "r");
 
 	if (f == NULL)
 	{
@@ -276,8 +270,9 @@ FILE* f = fopen(instance_name, "r");
 					case 'q': /* initialize quadratic knapsack problem */
 					{
 						sscanf (line, "%c %d %d %d", &ch, &numNodes, &numArcs, &numParams);
-						numArcs = 2*numArcs + 2*numNodes;
+						numArcs = numArcs + 2*numNodes;
 						numNodes = numNodes + 2;
+						printf("c No nodes is %d and No arcs is %d\n", numNodes, numArcs);
 						break;
 					}
 					case 'm': /* initialize mining problem */
@@ -332,7 +327,7 @@ FILE* f = fopen(instance_name, "r");
 				{
 					initializeArc (&arcList[i]);
 				}
-				printf("Finished reading the first line\n");
+				printf("c Finished reading the first line\n");
 			}
 			else
 			{
@@ -366,7 +361,7 @@ FILE* f = fopen(instance_name, "r");
 						ac->from = &adjacencyList[from+2];
 						adjacencyList[from+2].wt += capacity;
 						ac->to = &adjacencyList[to+2];
-						adjacencyList[to+2].wt += capacity;
+						// adjacencyList[to+2].wt += capacity;
 						if ((ac->capacities = (float *) malloc (sizeof (float))) == NULL)
 						{
 							printf ("%s Line %d: Out of memory\n", __FILE__, __LINE__);
@@ -377,20 +372,20 @@ FILE* f = fopen(instance_name, "r");
 						++ ac->from->numAdjacent;
 						++ ac->to->numAdjacent;
 						++first;
-						/* Second arc j->i */
-						ac = &arcList[first];
-						ac->from = &adjacencyList[to+2];
-						ac->to = &adjacencyList[from+2];
-						if ((ac->capacities = (float *) malloc (sizeof (float))) == NULL)
-						{
-							printf ("%s Line %d: Out of memory\n", __FILE__, __LINE__);
-							exit (1);
-						}
-						ac->capacities[0] = capacity;
-						ac->capacity = ac->capacities[0];
-						++ ac->from->numAdjacent;
-						++ ac->to->numAdjacent;
-						++first;
+						// /* Second arc j->i */
+						// ac = &arcList[first];
+						// ac->from = &adjacencyList[to+2];
+						// ac->to = &adjacencyList[from+2];
+						// if ((ac->capacities = (float *) malloc (sizeof (float))) == NULL)
+						// {
+						// 	printf ("%s Line %d: Out of memory\n", __FILE__, __LINE__);
+						// 	exit (1);
+						// }
+						// ac->capacities[0] = capacity;
+						// ac->capacity = ac->capacities[0];
+						// ++ ac->from->numAdjacent;
+						// ++ ac->to->numAdjacent;
+						// ++first;
 						break;
 
 						case 'n':
@@ -431,7 +426,7 @@ FILE* f = fopen(instance_name, "r");
 				}
 				maxParam = maxDegreeRatio;
 			}
-			printf("maxparam is %f\n", maxParam);
+			printf("c maxparam is %f\n", maxParam);
 			step = (maxParam-minParam)/numParams;
 			for (i=0;i<numParams;i++)
 			{
@@ -1411,36 +1406,28 @@ freeMemory (void)
 int
 main(int argc, char ** argv)
 {
-	double thetime = timer();
+	double theinitime = timer();
+	// double thetime = timer();
 	double start_time = 0;
 	instance_name = argv[1];
 	outputfname= argv[2];
-	printf("%s\n", instance_name);
-	printf("%s\n", outputfname);
+	printf("c input file %s\n", instance_name);
+	printf("c output file %s\n", outputfname);
 	printf ("c Pseudoflow algorithm for parametric min cut (version 1.0)\n");
 	readData();
-	printf ("Time for reading file: %.4f seconds\n", (timer()-thetime)); fflush (stdout);
-#ifdef PROGRESS
-	printf ("c Finished reading file.\n"); fflush (stdout);
-#endif
+	printf ("c PseudoFlow Finished reading file in %.3f seconds\n", (timer()-theinitime)); fflush (stdout);
+double thetime = timer();
 
 	// Start stopwatch to measure time for parametric cut
 	start_time = timer();
 
 	simpleInitialization ();
-  printf("c Finished simple Initialization\n");
+  printf("c Finished simple Initialization in %.3f seconds\n", (timer()-theinitime)); fflush (stdout);
 
-#ifdef PROGRESS
-	printf ("c Finished initialization.\n"); fflush (stdout);
-#endif
-
+	thetime = timer();
 	pseudoflowPhase1 ();
 
-printf ("c Finished phase 1.\n"); fflush (stdout);
-#ifdef PROGRESS
-	printf ("c Finished phase 1.\n"); fflush (stdout);
-#endif
-
+printf ("c Finished phase 1 in %.3f seconds\n", (timer()-theinitime)); fflush (stdout);
 #ifdef RECOVER_FLOW
 	recoverFlow();
 	checkOptimality ();
@@ -1458,14 +1445,10 @@ printf ("c Finished phase 1.\n"); fflush (stdout);
 
 	printf("Time for performing parametric cut: %.4f seconds\n", (timer()-start_time)); 
 
-// #ifdef BREAKPOINTS
-// 	displayBreakpoints ();
-// #endif
-		start_time = timer();
-    outputBreakpoints ();
-    printf("Time for creating output file: %.4f seconds\n", (timer()-start_time));
-    printf("Time for everything: %.4f seconds\n", (timer()-thetime));
-    
+thetime = timer();
+outputBreakpoints ();
+printf("c PseudoFlow Finished create output file in %.3f seconds\n", (timer()-thetime));
+printf("c PseudoFlow completed the algorithm in %.3f seconds\n", (timer()-theinitime));
 
 	freeMemory ();
 
