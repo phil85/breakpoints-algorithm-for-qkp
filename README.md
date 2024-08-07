@@ -27,7 +27,7 @@
 
 Please cite the following paper if you use this code.
 
-**Hochbaum, D. S., Baumann, P., Goldschmidt O., Zhang Y.** (2024): A Fast and Effective  Breakpoints Algorithm for the Quadratic Knapsack Problem. under review.
+**Hochbaum, D. S., Baumann, P., Goldschmidt O., Zhang Y.** (2024): A Fast and Effective Breakpoints Algorithm for the Quadratic Knapsack Problem. under review.
 
 Bibtex:
 ```
