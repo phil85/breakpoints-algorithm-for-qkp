@@ -11,7 +11,7 @@ A scalable algorithm for quadratic knapsack problems
     1. Open a terminal and navigate to the folder that contains the file `QKPsimparamHPF.c`.
     2. Compile the C code with the command:
        ```bash
-       gcc QKPsimparamHPF.c -o QKPsimparamHPF
+       gcc QKPsimparamHPF.c -o QKPsimparamHPF.exe
        ```
 
     For Windows users:
