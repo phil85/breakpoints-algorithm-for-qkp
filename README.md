@@ -23,6 +23,22 @@
 
 3. All set, you can now run the algorithm in the `main.py` file.
 
+## Reference
+
+Please cite the following paper if you use this code.
+
+**Baumann, P. and Hochbaum D. S.** (2023): PCCC: The Pairwise-Confidence-Constraints-Clustering Algorithm. https://arxiv.org/abs/2212.14437
+
+Bibtex:
+```
+@article{hochbaum2024fast,
+	author={Hochbaum, Dorit S., Baumann, Philipp, Goldschmidt Olivier, Zhang Yiqing},
+	title = {A Fast and Effective  Breakpoints Algorithm for the Quadratic Knapsack Problem},
+	year={2024},
+	journal = {under review},
+}
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
