@@ -1,4 +1,4 @@
-![Cover Image](readme media/cover_image.png)
+![Cover Image](README/cover_image.png)
 ## A scalable algorithm for quadratic knapsack problems
 
 # Installation
