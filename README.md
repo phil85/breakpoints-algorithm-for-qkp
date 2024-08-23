@@ -35,9 +35,19 @@ Bibtex:
 	author={Hochbaum, Dorit S., Baumann, Philipp, Goldschmidt Olivier and Zhang Yiqing},
 	title = {A Fast and Effective Breakpoints Algorithm for the Quadratic Knapsack Problem},
 	year={2024},
+	url = {https://arxiv.org/abs/2408.12183},
+	doi = {https://doi.org/10.48550/arXiv.2408.12183},
 	journal = {under review},
 }
 ```
+
+## Links to related repositories
+
+- Repository containing all benchmark instances: https://github.com/phil85/benchmark-instances-for-qkp
+- Repository containing all results: https://github.com/phil85/results-for-qkp-benchmark-instances
+- Repository containing the code for Gurobi-based approach: https://github.com/phil85/gurobi-based-approach-for-qkp
+- Repository containing the code for Hexaly-based approach: https://github.com/phil85/hexaly-based-approach-for-qkp
+- Repository containing the code for the relative greedy algorithm: https://github.com/phil85/greedy-algorithm-for-qkp
 
 ## License
 
