@@ -464,6 +464,7 @@ def run_bp_algorithm(nodes, edges, weights, budgets, params):
         result['budget_fraction'] = '{:.4f}'.format(budget / sum(weights))
         result['n_breakpoints'] = n_breakpoints
         result['total_weights_at_breakpoints'] = ([0] + list(total_weights_at_breakpoints))
+        result['items_at_breakpoints'] = breakpoint_sets_as_list
         result['items_left'] = list(greedy_left_nodes[i])
         result['items_right'] = list(greedy_right_nodes[i])
         result['cpu_left'] = greedy_left_running_times[i]

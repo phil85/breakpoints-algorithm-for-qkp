@@ -1,4 +1,4 @@
-![Cover Image](README/cover_image.png)
+![Cover Image](README/breakpoints.jpg)
 
 # Installation
 
