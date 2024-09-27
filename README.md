@@ -2,9 +2,9 @@
 
 # Description
 
-This repository contains the source code of the breakpoints algorithm for the Quadratic Knapsack Problem (QKP). 
+This repository contains the source code of the breakpoints algorithm for the Quadratic Knapsack Problem. 
 
-The quadratic knapsack problem (QKP) is a variation of the classical knapsack problem, where the objective is to maximize a quadratic objective function. In this case, instead of simply selecting items to maximize a linear profit under a weight constraint, the profit includes interactions between pairs of items, making the profit a quadratic function. The goal is to select a subset of items such that the total weight does not exceed the capacity of the knapsack, and the sum of individual profits and pairwise interaction profits is maximized. This problem is more complex than the linear version due to the quadratic nature of the objective.
+The Quadratic Knapsack Problem (QKP) is a variation of the classical knapsack problem, where the objective is to maximize a quadratic objective function. In this case, instead of simply selecting items to maximize a linear profit under a weight constraint, the profit includes interactions between pairs of items, making the profit a quadratic function. The goal is to select a subset of items such that the total weight does not exceed the capacity of the knapsack, and the sum of individual profits and pairwise interaction profits is maximized. This problem is more complex than the linear version due to the quadratic nature of the objective.
 
 # Installation
 
@@ -27,7 +27,7 @@ The quadratic knapsack problem (QKP) is a variation of the classical knapsack pr
        gcc QKPsimparamHPF.c -o QKPsimparamHPF.exe
        ```
 
-3. All set, you can now run the algorithm in the `main.py` file.
+3. All set, you can now run the algorithm in the `run_illustrative_example.py` or `run_instance.py` file.
 
 ## Reference
 
