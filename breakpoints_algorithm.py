@@ -328,13 +328,7 @@ def compute_ofv_from_nodes_and_edges(items, nodes, edges):
     return ofv
 
 
-def write_input_file_for_QKPsimparamHPF(nodes, edges, weights, params):
-
-    # Get number of lambda values
-    if 'n_lambda_values' in params:
-        number_of_lambda_values = params['n_lambda_values']
-    else:
-        number_of_lambda_values = 1600
+def write_input_file_for_QKPsimparamHPF(nodes, edges, weights, n_lambda_values):
 
     # Write input file
     with open('input.txt', 'w') as f:
@@ -342,7 +336,7 @@ def write_input_file_for_QKPsimparamHPF(nodes, edges, weights, params):
         n_edges = len(edges)
         edge_lines = ['e {} {} {:.5f}\n'.format(i, j, edges[(i, j)]) for (i, j) in edges]
         node_lines = ['n {} {:.5f} N/A\n'.format(i, weights[i]) for i in nodes]
-        content = f'q {n_nodes} {n_edges} {number_of_lambda_values}\n' + ''.join(edge_lines) + ''.join(node_lines)
+        content = f'q {n_nodes} {n_edges} {n_lambda_values}\n' + ''.join(edge_lines) + ''.join(node_lines)
         f.write(content)
 
 
@@ -393,13 +387,13 @@ def extract_time_for_parametric_cut(text):
         return None
 
 
-def get_breakpoints(nodes, edges, weights, params):
+def get_breakpoints(nodes, edges, weights, n_lambda_values):
 
     # Start stopwatch
     tic = time.perf_counter()
 
     # Write input file for simple parametric flow algorithm
-    write_input_file_for_QKPsimparamHPF(nodes, edges, weights, params)
+    write_input_file_for_QKPsimparamHPF(nodes, edges, weights, n_lambda_values)
 
     # Stop stopwatch
     cpu_write = time.perf_counter() - tic
@@ -428,10 +422,10 @@ def get_breakpoints(nodes, edges, weights, params):
     return breakpoint_sets, cpu_write, cpu_cut, cpu_exe, cpu_read
 
 
-def run_bp_algorithm(nodes, edges, weights, budgets, params):
+def run_bp_algorithm(nodes, edges, weights, budgets, n_lambda_values=1600):
 
     # Compute breakpoints
-    breakpoint_sets_dict, cpu_write, cpu_cut, cpu_exe, cpu_read = get_breakpoints(nodes, edges, weights, params)
+    breakpoint_sets_dict, cpu_write, cpu_cut, cpu_exe, cpu_read = get_breakpoints(nodes, edges, weights, n_lambda_values)
 
     # Extract information from breakpoint sets
     n_breakpoints = len(breakpoint_sets_dict)

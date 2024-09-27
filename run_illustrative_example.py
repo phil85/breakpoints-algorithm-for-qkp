@@ -9,7 +9,7 @@ items = [0, 1, 2, 3]
 # Define the node weights
 weights = [2, 3, 4, 5]
 
-# Define the utilities for selecting nodes i and j
+# Define the profits for selecting nodes i and j
 profits = {(0, 0): 1,
            (0, 1): 2,
            (0, 2): 11,
@@ -19,11 +19,8 @@ profits = {(0, 0): 1,
            (2, 2): 1,
            (3, 3): 1}
 
-# Define parameters for the breakpoints algorithm
-params = {'n_lambda_values': 1600}
-
 # Run the breakpoints algorithm
-results = run_bp_algorithm(items, profits, weights, budgets, params)
+results = run_bp_algorithm(items, profits, weights, budgets, n_lambda_values=1600)
 
 # Print results
 print('Objective function value: {:.1f}'.format(results.loc[0, 'ofv']))

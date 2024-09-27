@@ -29,6 +29,29 @@ The Quadratic Knapsack Problem (QKP) is a variation of the classical knapsack pr
 
 3. All set, you can now run the algorithm in the `run_illustrative_example.py` or `run_instance.py` file.
 
+## Usage
+
+Import the `run_bp_algorithm` function from the `breakpoints_algorithm` module and the `load_instance` function from the `util` module. Then, load a problem instance from a file and run the breakpoints algorithm.
+
+```python
+from breakpoints_algorithm import run_bp_algorithm
+from util import load_instance
+
+# Load a problem instance from a file
+items, profits, weights, budgets = load_instance('data/synthetic_tf_2000.txt')
+
+# Run the breakpoints algorithm
+results = run_bp_algorithm(items, profits, weights, budgets, n_lambda_values=1600)
+````
+
+The `run_bp_algorithm` function takes the following parameters:
+
+- `items`: A list of items.
+- `profits`: A dictionary where the keys are pairs of items and the values are the corresponding profits. Note that a singleton profit is represented as a pair of the same item.
+- `weights`: A list containing the weights for each item.
+- `budgets`: A list of knapsack capacities. A separate solution will be computed for each capacity.
+- `n_lambda_values`: The number of lambda values to consider in the breakpoints algorithm.
+
 ## Reference
 
 Please cite the following paper if you use this code.
