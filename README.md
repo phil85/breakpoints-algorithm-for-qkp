@@ -1,6 +1,6 @@
-![Cover Image](README/breakpoints.jpg)
 [![License](https://img.shields.io/badge/License-MIT_License-blue)](LICENSE)
 [![Paper](https://img.shields.io/badge/Paper-arxiv-red)](https://arxiv.org/abs/2408.12183)
+![Cover Image](README/breakpoints.jpg)
 
 # Description
 
