@@ -1,5 +1,11 @@
 ![Cover Image](README/breakpoints.jpg)
 
+# Description
+
+This repository contains the source code of the breakpoints algorithm for the Quadratic Knapsack Problem (QKP). 
+
+The quadratic knapsack problem (QKP) is a variation of the classical knapsack problem, where the objective is to maximize a quadratic objective function. In this case, instead of simply selecting items to maximize a linear profit under a weight constraint, the profit includes interactions between pairs of items, making the profit a quadratic function. The goal is to select a subset of items such that the total weight does not exceed the capacity of the knapsack, and the sum of individual profits and pairwise interaction profits is maximized. This problem is more complex than the linear version due to the quadratic nature of the objective.
+
 # Installation
 
 1. Clone the repository.
