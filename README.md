@@ -47,10 +47,20 @@ results = run_bp_algorithm(items, profits, weights, budgets, n_lambda_values=160
 The `run_bp_algorithm` function takes the following parameters:
 
 - `items`: A list of items.
-- `profits`: A dictionary where the keys are pairs of items and the values are the corresponding profits. Note that a singleton profit is represented as a pair of the same item.
+- `profits`: A dictionary where the keys are pairs of items and the values are the corresponding profits. A singleton profit is represented as a pair of the same item.
 - `weights`: A list containing the weights for each item.
 - `budgets`: A list of knapsack capacities. A separate solution will be computed for each capacity.
 - `n_lambda_values`: The number of lambda values to consider in the breakpoints algorithm.
+
+The file that contains the problem instance should have the following format:
+
+```
+first line: number of items (n), number of profits (m), data type of profits (int or float)
+lines 2 to m+1: (i, j, profit) for each profit value where i and j are the ids of the items. The ids should be 0,...,n-1.
+line m+2: weights of the items separated by a space
+line m+3: budgets (knapsack capacities) separated by a space
+```
+
 
 ## Reference
 
