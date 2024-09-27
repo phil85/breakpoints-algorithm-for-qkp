@@ -81,13 +81,12 @@ Bibtex:
 ```
 [->Link to paper](https://arxiv.org/abs/2408.12183)
 
-## Links to related repositories
-
-- [Repository containing all benchmark instances](https://github.com/phil85/benchmark-instances-for-qkp)
-- [Repository containing all results](https://github.com/phil85/results-for-qkp-benchmark-instances)
-- [Repository containing the code for Gurobi-based approach](https://github.com/phil85/gurobi-based-approach-for-qkp)
-- [Repository containing the code for Hexaly-based approach](https://github.com/phil85/hexaly-based-approach-for-qkp)
-- [Repository containing the code for the relative greedy algorithm](https://github.com/phil85/greedy-algorithm-for-qkp)
+[//]: # (## Links to related repositories)
+[//]: # (- [Repository containing all benchmark instances]&#40;https://github.com/phil85/benchmark-instances-for-qkp&#41;)
+[//]: # (- [Repository containing all results]&#40;https://github.com/phil85/results-for-qkp-benchmark-instances&#41;)
+[//]: # (- [Repository containing the code for Gurobi-based approach]&#40;https://github.com/phil85/gurobi-based-approach-for-qkp&#41;)
+[//]: # (- [Repository containing the code for Hexaly-based approach]&#40;https://github.com/phil85/hexaly-based-approach-for-qkp&#41;)
+[//]: # (- [Repository containing the code for the relative greedy algorithm]&#40;https://github.com/phil85/greedy-algorithm-for-qkp&#41;)
 
 ## License
 
