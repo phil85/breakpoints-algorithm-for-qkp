@@ -4,7 +4,7 @@
 
 # Description
 
-This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to select a subset of items that maximizes the sum of pairwise and singleton profits such that the sum of weights of the elements in the selected subset does not exceed a given budget.
+This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to select a subset of items that maximizes the sum of pairwise and singleton profits such that the sum of weights of the items in the selected subset does not exceed a given budget.
 
 # Installation
 
