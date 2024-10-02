@@ -4,7 +4,7 @@
 
 # Description
 
-This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to find a subset of elements that maximizes the sum of pairwise and singleton utilities without exceeding a given budget.
+This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to select a subset of elements that maximizes the sum of pairwise and singleton utilities such that the sum of weights of the elements in the selected subset does not exceed a given budget.
 
 # Installation
 
@@ -66,17 +66,18 @@ line m+3: budgets (knapsack capacities) separated by a space
 
 Please cite the following paper if you use this code.
 
-**Hochbaum, D. S., Baumann, P., Goldschmidt O., Zhang Y.** (2024): A Fast and Effective Breakpoints Algorithm for the Quadratic Knapsack Problem. under review.
+**Hochbaum, D. S., Baumann, P., Goldschmidt O., Zhang Y.** (2024): A Fast and Effective Breakpoints Algorithm for the Quadratic Knapsack Problem. URL: https://arxiv.org/abs/2408.12183, arXiv:2408.12183.
 
 Bibtex:
 ```
-@article{hochbaum2024fast,
-	author={Hochbaum, Dorit S., Baumann, Philipp, Goldschmidt Olivier and Zhang Yiqing},
+@misc{hochbaum2024fast,
+	author={Hochbaum, Dorit S. and Baumann, Philipp and Goldschmidt, Olivier and Zhang, Yiqing},
 	title = {A Fast and Effective Breakpoints Algorithm for the Quadratic Knapsack Problem},
 	year={2024},
-	url = {https://arxiv.org/abs/2408.12183},
-	doi = {https://doi.org/10.48550/arXiv.2408.12183},
-	journal = {under review},
+	eprint={2408.12183},
+	archivePrefix={arXiv},
+	primaryClass={math.OC},
+	url={https://arxiv.org/abs/2408.12183}, 
 }
 ```
 - [Link to paper](https://arxiv.org/abs/2408.12183)
