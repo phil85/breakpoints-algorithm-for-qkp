@@ -4,9 +4,7 @@
 
 # Description
 
-This repository contains the source code of the breakpoints algorithm for the Quadratic Knapsack Problem. 
-
-The Quadratic Knapsack Problem (QKP) is a variation of the classical knapsack problem, where the objective is to maximize a quadratic objective function. In this case, instead of simply selecting items to maximize a linear profit under a weight constraint, the profit includes interactions between pairs of items, making the profit a quadratic function. The goal is to select a subset of items such that the total weight does not exceed the capacity of the knapsack, and the sum of individual profits and pairwise interaction profits is maximized. This problem is more complex than the linear version due to the quadratic nature of the objective.
+This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to find a subset of elements that maximizes the sum of pairwise and singleton utilities without exceeding a given budget.
 
 # Installation
 
@@ -81,11 +79,10 @@ Bibtex:
 	journal = {under review},
 }
 ```
-[->Link to paper](https://arxiv.org/abs/2408.12183)
+- [Link to paper](https://arxiv.org/abs/2408.12183)
+- [Link to the detailed results of the computational study conducted in the paper](https://github.com/phil85/results-for-qkp-benchmark-instances)
+- [Link to all benchmark instances used in the computational study conducted in the paper](https://github.com/phil85/benchmark-instances-for-qkp)
 
-[//]: # (## Links to related repositories)
-[//]: # (- [Repository containing all benchmark instances]&#40;https://github.com/phil85/benchmark-instances-for-qkp&#41;)
-[//]: # (- [Repository containing all results]&#40;https://github.com/phil85/results-for-qkp-benchmark-instances&#41;)
 [//]: # (- [Repository containing the code for Gurobi-based approach]&#40;https://github.com/phil85/gurobi-based-approach-for-qkp&#41;)
 [//]: # (- [Repository containing the code for Hexaly-based approach]&#40;https://github.com/phil85/hexaly-based-approach-for-qkp&#41;)
 [//]: # (- [Repository containing the code for the relative greedy algorithm]&#40;https://github.com/phil85/greedy-algorithm-for-qkp&#41;)
