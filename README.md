@@ -27,7 +27,11 @@ This software produces solutions to the well-known Quadratic Knapsack Problem (Q
        gcc QKPsimparamHPF.c -o QKPsimparamHPF.exe
        ```
 
-3. All set, you can now run the algorithm in the `run_illustrative_example.py` or `run_instance.py` file.
+3. Create a virtual environment and install the packages in requirements.txt
+    ```bash
+   pip install -r requirements.txt
+    ```
+4. All set, you can now run the algorithm in the `run_illustrative_example.py` or `run_instance.py` file.
 
 ## Usage
 
