@@ -4,7 +4,7 @@
 
 # Description
 
-This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to select a subset of items that maximizes the sum of pairwise and singleton profits such that the sum of weights of the items in the selected subset does not exceed a given budget.
+This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to select a subset of elements that maximizes the sum of pairwise and singleton utilities such that the sum of weights of the elements in the selected subset does not exceed a given budget.
 
 # Installation
 
@@ -38,26 +38,26 @@ from breakpoints_algorithm import run_bp_algorithm
 from util import load_instance
 
 # Load a problem instance from a file
-items, profits, weights, budgets = load_instance('data/synthetic_tf_2000.txt')
+elements, utilities, weights, budgets = load_instance('data/synthetic_tf_2000.txt')
 
 # Run the breakpoints algorithm
-results = run_bp_algorithm(items, profits, weights, budgets, n_lambda_values=1600)
+results = run_bp_algorithm(elements, utilities, weights, budgets, n_lambda_values=1600)
 ````
 
 The `run_bp_algorithm` function takes the following parameters:
 
-- `items`: A list of items.
-- `profits`: A dictionary where the keys are pairs of items and the values are the corresponding profits. A singleton profit is represented as a pair of the same item.
-- `weights`: A list containing the weights for each item.
+- `elements`: A list of elements.
+- `utilities`: A dictionary where the keys are pairs of elements and the values are the corresponding utilities. A singleton utility is represented as a pair of the same element.
+- `weights`: A list containing the weights for each element.
 - `budgets`: A list of knapsack capacities. A separate solution will be computed for each capacity.
 - `n_lambda_values`: The number of lambda values to consider in the breakpoints algorithm.
 
 The file that contains the problem instance should have the following format:
 
 ```
-first line: number of items (n), number of profits (m), data type of profits (int or float)
-lines 2 to m+1: (i, j, profit) for each profit value where i and j are the ids of the items. The ids should be 0,...,n-1.
-line m+2: weights of the items separated by a space
+first line: number of elements (n), number of utilities (m), data type of utilities (int or float)
+lines 2 to m+1: (i, j, utility) for each utility value where i and j are the ids of the elements. The ids should be 0,...,n-1.
+line m+2: weights of the elements separated by a space
 line m+3: budgets (knapsack capacities) separated by a space
 ```
 

@@ -305,7 +305,7 @@ def run_greedy(nodes, edges, weights, budgets, beta, breakpoints, breakpoint_wei
     return greedy_left_nodes, greedy_left_running_times, greedy_right_nodes, greedy_right_running_times
 
 
-def compute_ofv_from_nodes_and_edges(items, nodes, edges):
+def compute_ofv_from_nodes_and_edges(elements, nodes, edges):
 
     # Compute a dense utility matrix
     utility_matrix = np.zeros((len(nodes), len(nodes)))
@@ -319,11 +319,11 @@ def compute_ofv_from_nodes_and_edges(items, nodes, edges):
     utility_matrix[np.diag_indices_from(utility_matrix)] = 0
 
     # Add linear utilities
-    items = np.array(items, dtype=int)
-    ofv = linear_utilities[items].sum()
+    elements = np.array(elements, dtype=int)
+    ofv = linear_utilities[elements].sum()
 
     # Add quadratic utilities
-    ofv += utility_matrix[items][:, items].sum() / 2
+    ofv += utility_matrix[elements][:, elements].sum() / 2
 
     return ofv
 
@@ -458,9 +458,9 @@ def run_bp_algorithm(nodes, edges, weights, budgets, n_lambda_values=1600):
         result['budget_fraction'] = '{:.4f}'.format(budget / sum(weights))
         result['n_breakpoints'] = n_breakpoints
         result['total_weights_at_breakpoints'] = ([0] + list(total_weights_at_breakpoints))
-        result['items_at_breakpoints'] = breakpoint_sets_as_list
-        result['items_left'] = list(greedy_left_nodes[i])
-        result['items_right'] = list(greedy_right_nodes[i])
+        result['elements_at_breakpoints'] = breakpoint_sets_as_list
+        result['elements_left'] = list(greedy_left_nodes[i])
+        result['elements_right'] = list(greedy_right_nodes[i])
         result['cpu_left'] = greedy_left_running_times[i]
         result['cpu_right'] = greedy_right_running_times[i]
         result['cpu_write'] = cpu_write
@@ -469,16 +469,16 @@ def run_bp_algorithm(nodes, edges, weights, budgets, n_lambda_values=1600):
         result['cpu_read'] = cpu_read
 
         # Compute objective function values
-        result['ofv_left'] = compute_ofv_from_nodes_and_edges(result['items_left'], nodes, edges)
-        result['ofv_right'] = compute_ofv_from_nodes_and_edges(result['items_right'], nodes, edges)
-        result['total_weight_left'] = sum([weights[i] for i in result['items_left']])
-        result['total_weight_right'] = sum([weights[i] for i in result['items_right']])
+        result['ofv_left'] = compute_ofv_from_nodes_and_edges(result['elements_left'], nodes, edges)
+        result['ofv_right'] = compute_ofv_from_nodes_and_edges(result['elements_right'], nodes, edges)
+        result['total_weight_left'] = sum([weights[i] for i in result['elements_left']])
+        result['total_weight_right'] = sum([weights[i] for i in result['elements_right']])
         if result['ofv_left'] > result['ofv_right']:
-            result['items'] = result['items_left']
+            result['elements'] = result['elements_left']
             result['ofv'] = result['ofv_left']
             result['total_weight'] = result['total_weight_left']
         else:
-            result['items'] = result['items_right']
+            result['elements'] = result['elements_right']
             result['ofv'] = result['ofv_right']
             result['total_weight'] = result['total_weight_right']
 
