@@ -13,13 +13,16 @@ This software produces solutions to the well-known Quadratic Knapsack Problem (Q
 ## Installation
 
 1. Clone the repository.
+
 2. Compile the C code of the simple parametric cut procedure `QKPsimparamHPF.c` with a GNU C compiler.
+
     For Linux/Mac users:
     1. Open a terminal and navigate to the folder that contains the file `QKPsimparamHPF.c`.
     2. Compile the C code with the command:
        ```bash
        gcc QKPsimparamHPF.c -o QKPsimparamHPF.exe
        ```
+
     For Windows users:
     1. Install [Cygwin](https://www.cygwin.com/).
     2. Open the Cygwin shell and navigate to the folder that contains the file `QKPsimparamHPF.c`.
