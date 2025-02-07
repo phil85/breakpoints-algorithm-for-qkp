@@ -7,6 +7,7 @@ QKBP: A Fast and Effective Breakpoints Heuristic Algorithm for the Quadratic Kna
 [![License](https://img.shields.io/badge/License-MIT_License-blue)](LICENSE)
 [![Paper](https://img.shields.io/badge/Paper-European_Journal_of_Operational_Research-green)](https://doi.org/10.1016/j.ejor.2024.12.019)
 </h1>
+
 # Description
 
 This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to select a subset of elements that maximizes the sum of pairwise and singleton utilities such that the sum of weights of the elements in the selected subset does not exceed a given budget.
