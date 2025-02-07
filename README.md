@@ -88,7 +88,7 @@ Bibtex:
   publisher={Elsevier}
 }
 ```
-- [Link to paper](https://arxiv.org/abs/2408.12183)
+- [Link to paper](https://doi.org/10.1016/j.ejor.2024.12.019)
 - [Link to the detailed results of the computational study conducted in the paper](https://github.com/phil85/results-for-qkp-benchmark-instances)
 - [Link to all benchmark instances used in the computational study conducted in the paper](https://github.com/phil85/benchmark-instances-for-qkp)
 
