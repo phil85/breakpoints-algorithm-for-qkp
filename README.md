@@ -1,7 +1,11 @@
+<h1 align="center">
+QKBP: A Fast and Effective Breakpoints Heuristic Algorithm for the Quadratic Knapsack Problem
+<br>
+
 ![Cover Image](README/breakpoints.jpg)
 [![License](https://img.shields.io/badge/License-MIT_License-blue)](LICENSE)
-[![Paper](https://img.shields.io/badge/Paper-arxiv-red)](https://arxiv.org/abs/2408.12183)
-
+[![Paper](https://img.shields.io/badge/Paper-European_Journal_of_Operational_Research-green)](https://doi.org/10.1016/j.ejor.2024.12.019)
+</h1>
 # Description
 
 This software produces solutions to the well-known Quadratic Knapsack Problem (QKP). The QKP is to select a subset of elements that maximizes the sum of pairwise and singleton utilities such that the sum of weights of the elements in the selected subset does not exceed a given budget.
@@ -70,18 +74,18 @@ line m+3: budgets (knapsack capacities) separated by a space
 
 Please cite the following paper if you use this code.
 
-**Hochbaum, D. S., Baumann, P., Goldschmidt O., Zhang Y.** (2024): A Fast and Effective Breakpoints Algorithm for the Quadratic Knapsack Problem. URL: https://arxiv.org/abs/2408.12183, arXiv:2408.12183.
+**Hochbaum, D. S., Baumann, P., Goldschmidt O., Zhang Y.** (2024): A fast and effective breakpoints heuristic algorithm for the quadratic knapsack problem. European Journal of Operational Research, In Press, URL: https://doi.org/10.1016/j.ejor.2024.12.019
 
 Bibtex:
 ```
-@misc{hochbaum2024fast,
-	author={Hochbaum, Dorit S. and Baumann, Philipp and Goldschmidt, Olivier and Zhang, Yiqing},
-	title = {A Fast and Effective Breakpoints Algorithm for the Quadratic Knapsack Problem},
-	year={2024},
-	eprint={2408.12183},
-	archivePrefix={arXiv},
-	primaryClass={math.OC},
-	url={https://arxiv.org/abs/2408.12183}, 
+@article{hochbaum2024fast,
+  title={A fast and effective breakpoints heuristic algorithm for the quadratic knapsack problem},
+  author={Hochbaum, DS and Baumann, P and Goldschmidt, O and Zhang, Y},
+  journal={European Journal of Operational Research},
+  year={2024},
+  note={In Press},
+  doi={10.1016/j.ejor.2024.12.019},
+  publisher={Elsevier}
 }
 ```
 - [Link to paper](https://arxiv.org/abs/2408.12183)
