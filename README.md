@@ -1,6 +1,7 @@
 <h1 align="center">
 QKBP: A Fast and Effective Breakpoints Heuristic Algorithm for the Quadratic Knapsack Problem
 <br>
+<br>
 
 ![Cover Image](README/breakpoints.jpg)
 [![License](https://img.shields.io/badge/License-MIT_License-blue)](LICENSE)
